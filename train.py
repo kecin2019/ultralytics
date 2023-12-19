@@ -11,7 +11,8 @@ if __name__ == "__main__":
         data="housenumber.yaml",
         epochs=100,
         imgsz=640,
-        workers=4,
+        workers=1,
         save_period=10,
         amp=False,
+        batch=8,
     )
