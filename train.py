@@ -2,10 +2,10 @@ from ultralytics import YOLO
 
 
 if __name__ == "__main__":
-    # Load a model
+    # 加载模型文件
     model = YOLO("yolov8n.yaml")
 
-    # Train the model
+    # 训练模型
     results = model.train(
         data="housenumber.yaml",
         epochs=100,
