@@ -71,7 +71,6 @@ def draw_cut(img, box):
     return drawing, crop_img
 
 
-
 class MorphologyApp:
     def __init__(self, root, img_path):
         # 初始化窗口和图像
@@ -143,7 +142,10 @@ class MorphologyApp:
         self.update_canvas()
 
     def update_morphology(self, *_):
+        # 使用当前的内核大小更新形态学操作的结果
         self.result = self.img_morphology(self.thresh, self.current_kernel_sizes)
+        
+        # 更新当前内核大小的字典
         self.current_kernel_sizes = {
             morph_type: (
                 self.sliders[morph_type][0].get(),
@@ -152,20 +154,20 @@ class MorphologyApp:
             for morph_type in self.kernel_sizes
         }
 
-        # 显示处理后的图像
+        # 显示形态学操作处理后的图像
         self.update_canvas(self.result)
 
     def save_image(self):
-        # 打开文件对话框选择保存路径
+        # 打开文件对话框供用户选择保存路径
         file_path = filedialog.asksaveasfilename(
             defaultextension=".png", filetypes=[("PNG files", "*.png")]
         )
 
-        # 如果用户取消保存操作，则返回
+        # 如果用户取消保存操作，则直接返回
         if not file_path:
             return
 
-        # 保存处理后的图像
+        # 保存处理后的图像到指定路径
         cv2.imwrite(file_path, self.result)
 
     def img_morphology(self, image, kernel_sizes, iterations=1):
@@ -191,7 +193,6 @@ class MorphologyApp:
 
         # 返回纵向膨胀后的图像
         return dilate_y
-
 
     def update_canvas(self, image=None):
         if image is None:
