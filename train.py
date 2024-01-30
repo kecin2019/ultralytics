@@ -7,11 +7,11 @@ if __name__ == "__main__":
 
     # 训练模型
     results = model.train(
-        data="housenumber.yaml",
+        data="tree.yaml",
         epochs=100,
         imgsz=640,
         workers=4,
-        save_period=1,
+        save_period=5,
         amp=False,
         batch=16,
     )
